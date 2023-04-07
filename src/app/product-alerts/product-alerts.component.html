@@ -1,0 +1,10 @@
+<div *ngIf="product && product.price > 700">
+  <button
+    mat-button
+    type="button"
+    class="btn btn-light"
+    (click)="notify.emit()"
+  >
+    Notify Me
+  </button>
+</div>

@@ -1,0 +1,21 @@
+.example-toolbar {
+    justify-content: space-between;
+}
+
+.example-toolbar button mat-icon,
+a h1 {
+    color: #fff;
+    margin: 0;
+}
+
+mat-sidenav-content {
+    overflow: inherit;
+    overflow-y: scroll;
+}
+
+
+/*
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+*/

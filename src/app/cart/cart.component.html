@@ -1,0 +1,139 @@
+<div class="container-fluid">
+  <mat-card-title>My Cart</mat-card-title>
+
+  <div class="cart-item" *ngFor="let item of items">
+    <span>{{ item.name }}</span>
+    <span>{{ item.price | currency }}</span>
+  </div>
+  <div class="row">
+    <div class="col-lg-9">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Shipping Form</mat-card-title>
+          <mat-card-subtitle>Personal Information</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="card-content">
+          <mat-form-field class="example-form-field">
+            <mat-label>Clearable input</mat-label>
+            <input matInput type="text" [(ngModel)]="value" />
+            <button
+              *ngIf="value"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="value = ''"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <!-- #stepper is a template variable and can be used in in other elements in this component -->
+          <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="checkoutFormName">
+              <form [formGroup]="checkoutFormName" (ngSubmit)="onSubmit()">
+                <ng-template matStepLabel>Fill out your name</ng-template>
+                <mat-form-field class="example-form-field">
+                  <mat-label>Name</mat-label>
+                  <input
+                    matInput
+                    placeholder="eg. John"
+                    formControlName="firstCtrl"
+                    required
+                    type="text"
+                    #fname
+                    [(ngModel)]="fname.value"
+                  />
+                  <button
+                    *ngIf="fname.value"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="fname.value = ''"
+                  >
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="checkoutFormLastName">
+              <form [formGroup]="checkoutFormLastName" (ngSubmit)="onSubmit()">
+                <ng-template matStepLabel>Fill out your lastname</ng-template>
+                <mat-form-field class="example-form-field">
+                  <mat-label>Last Name</mat-label>
+                  <input
+                    matInput
+                    placeholder="eg. Doe"
+                    formControlName="secondCtrl"
+                    required
+                    type="text"
+                    #lname
+                    [(ngModel)]="lname.value"
+                  />
+                  <button
+                    *ngIf="lname.value"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="lname.value = ''"
+                  >
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="checkoutFormAddress">
+              <form [formGroup]="checkoutFormAddress" (ngSubmit)="onSubmit()">
+                <ng-template matStepLabel>Fill out your address</ng-template>
+                <mat-form-field appearance="fill">
+                  <mat-label>Address</mat-label>
+                  <input
+                    matInput
+                    formControlName="thirdCtrl"
+                    placeholder="Ex. 1 Main St, New York, NY"
+                    required
+                  />
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              <p>Personal information are filled.</p>
+            </mat-step>
+          </mat-stepper>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="col-lg-3">
+      <mat-card [style.height]="'calc(100%)'">
+        <mat-card-content>
+          <mat-accordion [style.height]="'calc(100%)'">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <a class="button fancy-button">
+                    <i class="material-icons">local_shipping</i>Check Shipping
+                    Prices Here
+                  </a>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <app-shipping></app-shipping>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
