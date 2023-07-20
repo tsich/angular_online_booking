@@ -1,0 +1,49 @@
+<div class="container-fluid justify-content-center">
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="row justify-content-center caption-top">
+                <div class="col-9">
+                    <caption class="pl-4">Availabilities</caption>
+                </div>
+                <div class="row">
+                    <ng-container *ngFor="let slot of slots; let i = index; let indexPrev = index">
+                        <div class="col-4">
+                            <table class="table table-borderless table-hover text-center">
+                                <thead>
+                                    <th>
+                                        {{slot.day}}
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let slotTime of slot.availabilities; let ai=index;">
+                                        <tr>
+                                            <ng-container *ngIf="ai<maxAvailLength; else elseBlock">
+                                                <td>
+                                                    <button class="btn btn-sm btn-primary">
+                                                        {{slotTime.time }} </button>
+                                                </td>
+                                            </ng-container>
+                                            <ng-template #elseBlock>
+                                                <td></td>
+                                            </ng-template>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
