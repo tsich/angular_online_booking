@@ -1,80 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { SharedService } from '../shared-service.service';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css'],
 })
-export class ListComponent {
-  slots: any[];
-  maxAvailLength: number;
+export class ListComponent implements OnInit {
+  // inhereted variables from app-component
+  // @Input() slots: any[] | undefined;
+  // @Input() selectedSlots: any[] | undefined;
+  // @Input() maxAvailLength!: number;
+  slots: any;
+  maxAvailLength: any;
 
-  constructor() {
-    this.slots = [
-      {
-        id: 0,
-        day: 'Monday',
-        availabilities: [
-          {
-            time: '09:30',
-          },
-          {
-            time: '09:35',
-          },
-          {
-            time: '09:40',
-          },
-          {
-            time: '09:45',
-          },
-          {
-            time: '09:50',
-          },
-        ],
-      },
-      {
-        id: 1,
-        day: 'Tuesday',
-        availabilities: [
-          {
-            time: '10:30',
-          },
-          {
-            time: '10:35',
-          },
-          {
-            time: '10:40',
-          },
-          {
-            time: '10:45',
-          },
-        ],
-      },
-      {
-        id: 2,
-        day: 'Wednesday',
-        availabilities: [
-          {
-            time: '11:30',
-          },
-          {
-            time: '11:35',
-          },
-          {
-            time: '11:40',
-          },
-          {
-            time: '11:45',
-          },
-        ],
-      },
-    ];
+  selectedValue = 'All';
 
-    this.maxAvailLength = Object.values(this.slots)
-      .map((a) => a.availabilities.length)
-      .reduce((a, b) => Math.max(a, b));
-    console.log(this.maxAvailLength);
+  constructor(private _sharedService: SharedService) {
+    // Set shared values from service to component's variables
+    this._sharedService.sharedParam.subscribe((event) => (this.slots = event));
     console.log(this.slots);
-    console.log(this.slots[0].availabilities.length);
+    this._sharedService.sharedMaxLen.subscribe(
+      (event) => (this.maxAvailLength = event)
+    );
+  }
+
+  onClick() {
+    this._sharedService.emitChange('Data from child');
+  }
+
+  @Output() onSelected = new EventEmitter<any>();
+  @Output() onCheck = new EventEmitter<any>();
+
+  ngOnInit() {}
+
+  // In this function fire onSelected & onCheck functions from app-component
+  onSelectedDateTime(day: string, time: string) {
+    var dateTime = day + ' ' + time;
+    console.log(dateTime);
+    this._sharedService.emitSetDateTime({day, time});
   }
 }

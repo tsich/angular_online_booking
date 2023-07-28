@@ -1,24 +1,30 @@
-<div class="container-fluid justify-content-center">
+<div class="container-fluid justify-content-center mt-4">
     <div class="row justify-content-center">
         <div class="col-5">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <label class="form-label">Choose day:</label>
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedValue">
+                <option selected value="All">All</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
             </select>
         </div>
     </div>
+    <div class="row">
+        <button (click)="onClick()">Click me!</button>
+    </div>
     <div class="row justify-content-center">
-        <div class="col-10">
-            <div class="row justify-content-center caption-top">
-                <div class="col-9">
-                    <caption class="pl-4">Availabilities</caption>
+        <div class="col-11">
+            <div class="row justify-content-center">
+                <div class="col-9 text-center">
+                    <h6 class="fw-bold py-4 fs-5">Availabilities:</h6>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center" *ngIf="selectedValue">
                     <ng-container *ngFor="let slot of slots; let i = index; let indexPrev = index">
-                        <div class="col-4">
-                            <table class="table table-borderless table-hover text-center">
+                        <div class="col-2" *ngIf="selectedValue == slot.day || selectedValue == 'All'">
+                            <table class="table table-borderless text-center caption-top">
                                 <thead>
                                     <th>
                                         {{slot.day}}
@@ -29,8 +35,10 @@
                                         <tr>
                                             <ng-container *ngIf="ai<maxAvailLength; else elseBlock">
                                                 <td>
-                                                    <button class="btn btn-sm btn-primary">
-                                                        {{slotTime.time }} </button>
+                                                    <button class="btn btn-primary"
+                                                        (click)="onSelectedDateTime(slot.day, slotTime.time)">
+                                                        {{slotTime.time}}
+                                                    </button>
                                                 </td>
                                             </ng-container>
                                             <ng-template #elseBlock>
