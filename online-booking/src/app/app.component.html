@@ -62,19 +62,16 @@
         </div>
     </div>
 </nav>
+<div class="container-fluid justify-content-center mt-4">
+    <div class="alert alert-danger" role="alert" *ngIf="authFailed && !loggedIn">
+        Your user credentials (username and/or password) are incorrect. Please try again.
+    </div>
 
-<div class="alert alert-danger" role="alert" *ngIf="!this.loggedIn">
-    {{loggedIn}}
+    <router-outlet></router-outlet>
 </div>
-
-<router-outlet></router-outlet>
-<!-- Footer -->
 <footer class="text-center text-lg-start bg-white text-muted fixed-bottom border-top">
-    <!-- Copyright -->
     <div class="text-center py-3 bg-light">
         © 2023 Copyright.
         <a class="text-reset" href="https://github.com/tsich">Stella Tsichlaki</a>
     </div>
-    <!-- Copyright -->
 </footer>
-<!-- Footer -->

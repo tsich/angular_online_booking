@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationClient } from '../clients/authentication.client';
+import { SharedService } from './shared-service.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class AuthenticationService {
 
   constructor(
     private authenticationClient: AuthenticationClient,
+    private _sharedService: SharedService,
     private router: Router
   ) {}
 
@@ -44,6 +46,8 @@ export class AuthenticationService {
         localStorage.setItem(this.tokenKey, token);
         localStorage.setItem('data', data);
         this.router.navigate(['/']);
+      } else {
+        this._sharedService.emitOnFailedLogIn(true);
       }
     });
   }

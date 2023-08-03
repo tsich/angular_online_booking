@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   selectedSlots: any[] = [];
   title = 'online-booking';
   loggedIn: boolean = false;
+  authFailed: boolean | undefined;
 
   selectedDateTime: any;
   maxAvailLength!: number;
@@ -56,7 +57,6 @@ export class AppComponent implements OnInit {
 
         this.slots = mydata;
 
-
         // Shared parameter "slots"
         _sharedService.changeParam(this.slots);
 
@@ -68,6 +68,7 @@ export class AppComponent implements OnInit {
         _sharedService.changeMaxLengthParam(this.maxAvailLength);
       }
     });
+    _sharedService.authFailed.subscribe((bool) => (this.authFailed = bool));
   }
 
   // Filter datetime selections

@@ -1,56 +1,54 @@
-<div class="container-fluid justify-content-center mt-4">
-    <div class="row justify-content-center">
-        <div class="col-5">
-            <label class="form-label">Choose day:</label>
-            <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedValue">
-                <option selected value="All">All</option>
-                <option value="Monday">Monday</option>
-                <option value="Tuesday">Tuesday</option>
-                <option value="Wednesday">Wednesday</option>
-                <option value="Thursday">Thursday</option>
-                <option value="Friday">Friday</option>
-            </select>
-        </div>
+<div class="row justify-content-center">
+    <div class="col-5">
+        <label class="form-label">Choose day:</label>
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedValue">
+            <option selected value="All">All</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+        </select>
     </div>
-    <!-- <div class="row">
+</div>
+<!-- <div class="row">
         <button (click)="onClick()">Click me!</button>
     </div> -->
-    <div class="row justify-content-center">
-        <div class="col-11">
-            <div class="row justify-content-center">
-                <div class="col-9 text-center">
-                    <h6 class="fw-bold py-4 fs-5">Availabilities:</h6>
-                </div>
-                <div class="row justify-content-center" *ngIf="selectedValue">
-                    <ng-container *ngFor="let slot of slots; let i = index; let indexPrev = index">
-                        <div class="col-2" *ngIf="selectedValue == slot.day || selectedValue == 'All'">
-                            <table class="table table-borderless text-center caption-top">
-                                <thead>
-                                    <th>
-                                        {{slot.day}}
-                                    </th>
-                                </thead>
-                                <tbody>
-                                    <ng-container *ngFor="let slotTime of slot.availabilities; let ai=index;">
-                                        <tr>
-                                            <ng-container *ngIf="ai<maxAvailLength; else elseBlock">
-                                                <td>
-                                                    <button class="btn btn-primary"
-                                                        (click)="onSelectedDateTime(slot.day, slotTime.time)">
-                                                        {{slotTime.time}}
-                                                    </button>
-                                                </td>
-                                            </ng-container>
-                                            <ng-template #elseBlock>
-                                                <td></td>
-                                            </ng-template>
-                                        </tr>
-                                    </ng-container>
-                                </tbody>
-                            </table>
-                        </div>
-                    </ng-container>
-                </div>
+<div class="row justify-content-center">
+    <div class="col-11">
+        <div class="row justify-content-center">
+            <div class="col-9 text-center">
+                <h6 class="fw-bold py-4 fs-5">Availabilities:</h6>
+            </div>
+            <div class="row justify-content-center" *ngIf="selectedValue">
+                <ng-container *ngFor="let slot of slots; let i = index; let indexPrev = index">
+                    <div class="col-2" *ngIf="selectedValue == slot.day || selectedValue == 'All'">
+                        <table class="table table-borderless text-center caption-top">
+                            <thead>
+                                <th>
+                                    {{slot.day}}
+                                </th>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let slotTime of slot.availabilities; let ai=index;">
+                                    <tr>
+                                        <ng-container *ngIf="ai<maxAvailLength; else elseBlock">
+                                            <td>
+                                                <button class="btn btn-primary"
+                                                    (click)="onSelectedDateTime(slot.day, slotTime.time)">
+                                                    {{slotTime.time}}
+                                                </button>
+                                            </td>
+                                        </ng-container>
+                                        <ng-template #elseBlock>
+                                            <td></td>
+                                        </ng-template>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </ng-container>
             </div>
         </div>
     </div>

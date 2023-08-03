@@ -8,7 +8,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { RegisterComponent } from './register/register.component';
 
-// add a new routes array to store the paths that you will use when routing to each page.
+// Add a new routes array to store the paths that you will use when routing to each page.
 const routes: Routes = [
   { path: '', component: ListComponent, canActivate: [AuthGuard] },
   { path: 'list', component: ListComponent },

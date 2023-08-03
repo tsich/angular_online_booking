@@ -22,8 +22,9 @@ export class SharedService {
   public isUserLoggedIn: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
   // BehaviorSubject boolean for auth fail
-  public authFailed: BehaviorSubject<boolean> =
-    new BehaviorSubject<boolean>(false);
+  public authFailed: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
 
   constructor() {}
 
@@ -50,5 +51,10 @@ export class SharedService {
   emitOnLoggedIn(logged: boolean) {
     console.log('Shared service->logged: ' + logged);
     this.isUserLoggedIn.next(logged);
+  }
+
+  emitOnFailedLogIn(state: boolean) {
+    console.log('Shared service->emitOnFailedLogIn: ' + state);
+    this.authFailed.next(state);
   }
 }

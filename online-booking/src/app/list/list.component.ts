@@ -7,10 +7,6 @@ import { AuthenticationService } from '../_services/authentication.service';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
-  // inhereted variables from app-component
-  // @Input() slots: any[] | undefined;
-  // @Input() selectedSlots: any[] | undefined;
-  // @Input() maxAvailLength!: number;
   slots: any;
   maxAvailLength: any;
 
@@ -22,7 +18,6 @@ export class ListComponent implements OnInit {
   ) {
     // Set shared values from service to component's variables
     this._sharedService.sharedParam.subscribe((event) => (this.slots = event));
-    console.log(this.slots);
     this._sharedService.sharedMaxLen.subscribe(
       (event) => (this.maxAvailLength = event)
     );

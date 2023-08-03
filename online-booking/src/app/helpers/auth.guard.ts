@@ -16,13 +16,6 @@ export const authGuard: CanActivateFn = (
   const _sharedService = inject(SharedService);
   const router = inject(Router);
 
-  // return authService.isLoggedIn().pipe(
-  //   map(() => true),
-  //   catchError(() => {
-  //     router.navigate(['route-to-fallback-page']);
-  //     return of(false);
-  //   })
-  // );
   if (!authService.isLoggedIn()) {
     router.navigate(['/login']);
   }
