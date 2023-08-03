@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { SharedService } from '../shared-service.service';
-
+import { SharedService } from '../_services/shared-service.service';
+import { AuthenticationService } from '../_services/authentication.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -16,13 +16,17 @@ export class ListComponent implements OnInit {
 
   selectedValue = 'All';
 
-  constructor(private _sharedService: SharedService) {
+  constructor(
+    private _sharedService: SharedService,
+    private authenticationService: AuthenticationService
+  ) {
     // Set shared values from service to component's variables
     this._sharedService.sharedParam.subscribe((event) => (this.slots = event));
     console.log(this.slots);
     this._sharedService.sharedMaxLen.subscribe(
       (event) => (this.maxAvailLength = event)
     );
+    this._sharedService.emitOnLoggedIn(this.authenticationService.isLoggedIn());
   }
 
   onClick() {
@@ -31,6 +35,7 @@ export class ListComponent implements OnInit {
 
   @Output() onSelected = new EventEmitter<any>();
   @Output() onCheck = new EventEmitter<any>();
+  @Output() onLoggedIn = new EventEmitter<any>();
 
   ngOnInit() {}
 
@@ -38,6 +43,6 @@ export class ListComponent implements OnInit {
   onSelectedDateTime(day: string, time: string) {
     var dateTime = day + ' ' + time;
     console.log(dateTime);
-    this._sharedService.emitSetDateTime({day, time});
+    this._sharedService.emitSetDateTime({ day, time });
   }
 }

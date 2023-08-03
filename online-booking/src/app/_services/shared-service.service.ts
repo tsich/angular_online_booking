@@ -18,6 +18,12 @@ export class SharedService {
   // Observable string streams
   emitChangeDT$ = this.emitChangeDateTime.asObservable();
 
+  // Observable string sources for selected dateTime
+  // private emitLoggedIn = new Subject<any>();
+  // Observable string streams
+  // emitLoggedU$ = this.emitLoggedIn.asObservable();
+  public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   constructor() {}
 
   // Set the shared slots parameter
@@ -31,12 +37,17 @@ export class SharedService {
 
   // Service message commands
   emitChange(change: any) {
-    console.log('lalala0');
+    console.log('Shared service: emitChange');
     this.emitChangeSource.next(change);
   }
 
   emitSetDateTime(dateTime: any) {
-    console.log('lalala1');
+    console.log('Shared service: emitSetDateTime');
     this.emitChangeDateTime.next(dateTime);
+  }
+
+  emitOnLoggedIn(logged: boolean) {
+    console.log('Shared service->logged: ' + logged);
+    this.isUserLoggedIn.next(logged);
   }
 }

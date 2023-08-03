@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light"
+    *ngIf="router.url !== '/login' && router.url !== '/register'">
     <div class="container-fluid">
         <a class="navbar-brand" [routerLink]="['/list', {slots}]">{{title}}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -7,9 +8,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
@@ -52,11 +50,11 @@
                             data-bs-toggle="dropdown" aria-expanded="false">{{user}}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="/logout">My appointments</a></li>
+                            <li><a class="dropdown-item" href="">My appointments</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/logout">Log Out</a></li>
+                            <li><a class="dropdown-item" href="#" (click)="logout()">Log Out</a></li>
                         </ul>
                     </form>
                 </li>
@@ -65,8 +63,23 @@
     </div>
 </nav>
 
+<div class="alert alert-danger" role="alert" *ngIf="!this.loggedIn">
+    A simple danger alert—check it out!
+
+    {{loggedIn}}
+</div>
 <!-- <app-list [slots]="slots" (onCheck)="filterSelectedDateTime($event)" (onSelected)="onSelectedDateTime($event)"
     [maxAvailLength]="maxAvailLength">
 </app-list> -->
 
 <router-outlet></router-outlet>
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-white text-muted fixed-bottom border-top">
+    <!-- Copyright -->
+    <div class="text-center py-3 bg-light">
+        © 2023 Copyright.
+        <a class="text-reset" href="https://github.com/tsich">Stella Tsichlaki</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->

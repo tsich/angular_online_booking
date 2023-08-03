@@ -1,50 +1,84 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import mydata from '../assets/json/mydata.json';
-import { SharedService } from './shared-service.service';
+import { SharedService } from './_services/shared-service.service';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { WeatherClient } from './clients/weather.client';
+import { AuthenticationService } from './_services/authentication.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  user = 'test user';
-  slots: any[];
-  selectedSlots: any[];
+export class AppComponent implements OnInit {
+  data: any = localStorage.getItem('data');
+  dataUser: any[] = this.data != null ? JSON.parse(this.data) : [];
+  user: string = this.dataUser.length > 0 ? this.dataUser[0].username : '';
+  slots: any[] = [];
+  selectedSlots: any[] = [];
   title = 'online-booking';
+  loggedIn: boolean = false;
 
   selectedDateTime: any;
-  maxAvailLength: number;
+  maxAvailLength!: number;
 
-  constructor(private _sharedService: SharedService) {
-    _sharedService.changeEmitted$.subscribe((text) => {
-      console.log(text);
+  public weather: Observable<any> = this.weatherClient.getWeatherData();
+
+  constructor(
+    private _sharedService: SharedService,
+    public router: Router,
+    private authenticationService: AuthenticationService,
+    private weatherClient: WeatherClient
+  ) {
+    // _sharedService.emitLoggedU$.subscribe((val) => (this.loggedIn = val));
+    _sharedService.isUserLoggedIn.subscribe((val) => {
+      this.loggedIn = val;
+      console.log('emit ' + this.loggedIn);
+      if (this.loggedIn) {
+        this.data = localStorage.getItem('data');
+        this.dataUser = this.data != null ? JSON.parse(this.data) : [];
+        this.user = this.dataUser.length > 0 ? this.dataUser[0].username : '';
+
+        // Shared service emmits
+        _sharedService.changeEmitted$.subscribe((text) => {
+          console.log(text);
+        });
+
+        // Get selected dateTime from service
+        _sharedService.emitChangeDT$.subscribe((dateTime) => {
+          console.log('lala2');
+          this.selectedDateTime = dateTime;
+          this.filterSelectedDateTime(this.selectedDateTime);
+        });
+
+        // Variables' Initialization
+        this.selectedSlots = [];
+
+        this.slots = mydata;
+
+        console.log(this.slots);
+
+        // Shared parameter "slots"
+        _sharedService.changeParam(this.slots);
+
+        // Calculate max length of slots array
+        this.maxAvailLength = Object.values(this.slots)
+          .map((a) => a.availabilities.length)
+          .reduce((a, b) => Math.max(a, b));
+        // Shared parameter "maxAvailLength"
+        _sharedService.changeMaxLengthParam(this.maxAvailLength);
+      }
     });
-
-    // Get selected dateTime from service
-    _sharedService.emitChangeDT$.subscribe((dateTime) => {
-      console.log('lala2');
-      this.selectedDateTime = dateTime;
-      this.filterSelectedDateTime(this.selectedDateTime);
-    });
-
-    this.selectedSlots = [];
-
-    this.slots = mydata;
-
-    console.log(this.slots);
-
-    // Shared parameter "slots"
-    this._sharedService.changeParam(this.slots);
-
-    // Calculate max length of slots array
-    this.maxAvailLength = Object.values(this.slots)
-      .map((a) => a.availabilities.length)
-      .reduce((a, b) => Math.max(a, b));
-    // Shared parameter "maxAvailLength"
-    this._sharedService.changeMaxLengthParam(this.maxAvailLength);
+    console.log('construct: ' + this.loggedIn);
+    console.log(
+      'construct auth sevice is loggedin: ' + authenticationService.isLoggedIn()
+    );
+    console.log('construct: ' + this.user);
   }
 
+  // Filter datetime selections
   filterSelectedDateTime(selection: any): any {
     console.log(selection);
 
@@ -58,14 +92,10 @@ export class AppComponent {
     console.log(this.selectedSlots);
   }
 
+  // Remove datetime from selection list
   removeDateTime(el: any): any {
     console.log(el);
     console.log(this.selectedSlots);
-
-    // this.selectedSlots.filter(
-    //   (item) => item.day !== el.day
-    // );
-
     this.selectedSlots.splice(
       this.selectedSlots.findIndex(
         (e) => e.day === el.day && e.time === el.time
@@ -75,5 +105,22 @@ export class AppComponent {
     console.log('after remove:');
     console.log(this.selectedSlots);
     console.log(this.selectedSlots.findIndex((e) => e.day == el.day));
+  }
+
+  ngOnInit(): void {
+    // this._sharedService.isUserLoggedIn.subscribe(
+    //   (val) => (this.loggedIn = val)
+    // );
+    // this.data = localStorage.getItem('data');
+    // this.dataUser = this.data != null ? JSON.parse(this.data) : [];
+    // this.user = this.dataUser.length > 0 ? this.dataUser[0].username : '';
+    // console.log('ngOnInit ' + this.loggedIn);
+    // console.log('ngOnInit ' + this.user);
+  }
+
+  // Logout Function
+  logout(): void {
+    this.authenticationService.logout();
+    this.loggedIn = false;
   }
 }
