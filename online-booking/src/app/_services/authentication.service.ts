@@ -17,11 +17,13 @@ export class AuthenticationService {
     private router: Router
   ) {}
 
-  generateToken(n: string) {
+  // Generate a random string as a token for each user
+  generateToken(n: number) {
+    console.log(n);
     var chars =
-      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$&';
     var token = '';
-    for (var i = 0; i < n.length; i++) {
+    for (var i = 0; i < n; i++) {
       token += chars[Math.floor(Math.random() * chars.length)];
     }
     return token;
@@ -33,8 +35,12 @@ export class AuthenticationService {
     this.authenticationClient.login(username, password).subscribe((data) => {
       console.log(JSON.parse(data));
       if (JSON.parse(data).length) {
-        var token = this.generateToken(this.tokenKey);
-        // console.log(token);
+        // Generate a token with a stable + random int length
+        var token = this.generateToken(
+          JSON.parse(data)[0].username.length +
+            Math.floor(Math.random() * 10 + 2)
+        );
+        console.log(token);
         localStorage.setItem(this.tokenKey, token);
         localStorage.setItem('data', data);
         this.router.navigate(['/']);
@@ -47,11 +53,11 @@ export class AuthenticationService {
     this.authenticationClient
       .register(username, email, password)
       .subscribe((data) => {
-        // console.log(JSON.parse(data));
-        // console.log(Object.keys(JSON.parse(data)).length);
         if (Object.keys(JSON.parse(data)).length) {
-          var token = this.generateToken(this.tokenKey);
-          // console.log(token);
+          var token = this.generateToken(
+            JSON.parse(data)[0].username.length +
+              Math.floor(Math.random() * 10 + 2)
+          );
           localStorage.setItem(this.tokenKey, token);
           localStorage.setItem('data', data);
           this.router.navigate(['/']);

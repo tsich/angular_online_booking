@@ -32,10 +32,9 @@ export class AppComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private weatherClient: WeatherClient
   ) {
-    // _sharedService.emitLoggedU$.subscribe((val) => (this.loggedIn = val));
     _sharedService.isUserLoggedIn.subscribe((val) => {
       this.loggedIn = val;
-      console.log('emit ' + this.loggedIn);
+      // console.log('emit ' + this.loggedIn);
       if (this.loggedIn) {
         this.data = localStorage.getItem('data');
         this.dataUser = this.data != null ? JSON.parse(this.data) : [];
@@ -48,7 +47,6 @@ export class AppComponent implements OnInit {
 
         // Get selected dateTime from service
         _sharedService.emitChangeDT$.subscribe((dateTime) => {
-          console.log('lala2');
           this.selectedDateTime = dateTime;
           this.filterSelectedDateTime(this.selectedDateTime);
         });
@@ -58,7 +56,6 @@ export class AppComponent implements OnInit {
 
         this.slots = mydata;
 
-        console.log(this.slots);
 
         // Shared parameter "slots"
         _sharedService.changeParam(this.slots);
@@ -71,52 +68,30 @@ export class AppComponent implements OnInit {
         _sharedService.changeMaxLengthParam(this.maxAvailLength);
       }
     });
-    console.log('construct: ' + this.loggedIn);
-    console.log(
-      'construct auth sevice is loggedin: ' + authenticationService.isLoggedIn()
-    );
-    console.log('construct: ' + this.user);
   }
 
   // Filter datetime selections
   filterSelectedDateTime(selection: any): any {
-    console.log(selection);
-
-    // this.selectedSlots.push({ day: day, time: time });
     this.selectedSlots.filter(
       (e) => e.day === selection.day && e.time == selection.time
     ).length > 0
       ? console.log('This item already exists')
       : this.selectedSlots.push(selection);
-
-    console.log(this.selectedSlots);
   }
 
   // Remove datetime from selection list
   removeDateTime(el: any): any {
-    console.log(el);
-    console.log(this.selectedSlots);
     this.selectedSlots.splice(
       this.selectedSlots.findIndex(
         (e) => e.day === el.day && e.time === el.time
       ),
       1
     );
-    console.log('after remove:');
     console.log(this.selectedSlots);
     console.log(this.selectedSlots.findIndex((e) => e.day == el.day));
   }
 
-  ngOnInit(): void {
-    // this._sharedService.isUserLoggedIn.subscribe(
-    //   (val) => (this.loggedIn = val)
-    // );
-    // this.data = localStorage.getItem('data');
-    // this.dataUser = this.data != null ? JSON.parse(this.data) : [];
-    // this.user = this.dataUser.length > 0 ? this.dataUser[0].username : '';
-    // console.log('ngOnInit ' + this.loggedIn);
-    // console.log('ngOnInit ' + this.user);
-  }
+  ngOnInit(): void {}
 
   // Logout Function
   logout(): void {

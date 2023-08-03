@@ -7,48 +7,8 @@
     },
     {
       "id": 2,
-      "username": "u",
-      "password": "p"
-    },
-    {
-      "username": "u1",
-      "password": "p1",
-      "id": 3
-    },
-    {
-      "username": "u2",
-      "password": "p2",
-      "id": 4
-    },
-    {
       "username": "test",
-      "email": "tt",
-      "password": "t",
-      "id": 5
-    },
-    {
-      "username": "test",
-      "email": "tt",
-      "password": "t",
-      "id": 6
-    },
-    {
-      "username": "t",
-      "email": "t",
-      "password": "t",
-      "id": 7
-    },
-    {
-      "username": "d",
-      "email": "d",
-      "password": "d",
-      "id": 8
-    },
-    {
-      "username": "stella",
-      "email": "s@t",
-      "password": "st",
-      "id": 9
+      "password": "test"
     }
   ]
 }

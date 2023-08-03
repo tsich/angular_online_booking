@@ -18,11 +18,12 @@ export class SharedService {
   // Observable string streams
   emitChangeDT$ = this.emitChangeDateTime.asObservable();
 
-  // Observable string sources for selected dateTime
-  // private emitLoggedIn = new Subject<any>();
-  // Observable string streams
-  // emitLoggedU$ = this.emitLoggedIn.asObservable();
-  public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  // BehaviorSubject boolean for login state
+  public isUserLoggedIn: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  // BehaviorSubject boolean for auth fail
+  public authFailed: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
 
   constructor() {}
 

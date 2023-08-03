@@ -64,13 +64,8 @@
 </nav>
 
 <div class="alert alert-danger" role="alert" *ngIf="!this.loggedIn">
-    A simple danger alert—check it out!
-
     {{loggedIn}}
 </div>
-<!-- <app-list [slots]="slots" (onCheck)="filterSelectedDateTime($event)" (onSelected)="onSelectedDateTime($event)"
-    [maxAvailLength]="maxAvailLength">
-</app-list> -->
 
 <router-outlet></router-outlet>
 <!-- Footer -->
