@@ -7,20 +7,32 @@ import { AuthenticationService } from '../_services/authentication.service';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
-  slots: any;
-  maxAvailLength: any;
-
+  // slots: any;
+  slots: any[] = [];
+  // maxAvailLength: any;
+  maxAvailLength!: number;
   selectedValue = 'All';
 
   constructor(
     private _sharedService: SharedService,
     private authenticationService: AuthenticationService
   ) {
-    // Set shared values from service to component's variables
-    this._sharedService.sharedParam.subscribe((event) => (this.slots = event));
-    this._sharedService.sharedMaxLen.subscribe(
-      (event) => (this.maxAvailLength = event)
-    );
+    // Get shared values from service to component's variables
+    this._sharedService.sharedParam.subscribe((data) => {
+      if (data) {
+        // if data exist (!null !false !empty)
+        this.slots = data;
+        console.log(this.slots.map((a) => a.availabilities.length));
+        this.maxAvailLength = Object.values(this.slots)
+          .map((a) => a.availabilities.length)
+          .reduce((a, b) => Math.max(a, b));
+      }
+    });
+    // Calculate max length of slots array
+
+    // Shared parameter "maxAvailLength"
+    _sharedService.changeMaxLengthParam(this.maxAvailLength);
+    // Set login status
     this._sharedService.emitOnLoggedIn(this.authenticationService.isLoggedIn());
   }
 

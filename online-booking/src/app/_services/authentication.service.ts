@@ -45,6 +45,8 @@ export class AuthenticationService {
         console.log(token);
         localStorage.setItem(this.tokenKey, token);
         localStorage.setItem('data', data);
+        console.log('fired getSlots from login');
+        this.getSlots();
         this.router.navigate(['/']);
       } else {
         this._sharedService.emitOnFailedLogIn(true);
@@ -64,6 +66,8 @@ export class AuthenticationService {
           );
           localStorage.setItem(this.tokenKey, token);
           localStorage.setItem('data', data);
+          console.log('fired getSlots from register');
+          this.getSlots();
           this.router.navigate(['/']);
         }
       });
@@ -78,14 +82,22 @@ export class AuthenticationService {
 
   // Public isLoggedIn function to check if the user is logged in
   public isLoggedIn(): boolean {
-    // console.log(localStorage);
     let token = localStorage.getItem(this.tokenKey);
     return token != null && token.length > 0;
   }
 
   // Public function to get the user's token from cache else return null
   public getToken(): string | null {
-    // console.log(localStorage);
     return this.isLoggedIn() ? localStorage.getItem(this.tokenKey) : null;
+  }
+
+  // Public getSlots function
+  public getSlots(): boolean {
+    console.log('got in getslots');
+    this.authenticationClient.getSlots().subscribe((data) => {
+      this._sharedService.slotsParam(data);
+      console.log('set slotsParam');
+    });
+    return true;
   }
 }

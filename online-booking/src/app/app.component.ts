@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import mydata from '../assets/json/mydata.json';
 import { SharedService } from './_services/shared-service.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -16,14 +15,13 @@ export class AppComponent implements OnInit {
   data: any = localStorage.getItem('data');
   dataUser: any[] = this.data != null ? JSON.parse(this.data) : [];
   user: string = this.dataUser.length > 0 ? this.dataUser[0].username : '';
-  slots: any[] = [];
+  slots: any;
   selectedSlots: any[] = [];
-  title = 'online-booking';
+  title = 'onres';
   loggedIn: boolean = false;
   authFailed: boolean | undefined;
 
   selectedDateTime: any;
-  maxAvailLength!: number;
 
   public weather: Observable<any> = this.weatherClient.getWeatherData();
 
@@ -35,8 +33,11 @@ export class AppComponent implements OnInit {
   ) {
     _sharedService.isUserLoggedIn.subscribe((val) => {
       this.loggedIn = val;
-      // console.log('emit ' + this.loggedIn);
-      if (this.loggedIn) {
+      if (this.loggedIn && this.authenticationService.getSlots()) {
+        _sharedService.sharedParam.subscribe((val) => {
+          this.slots = val;
+        });
+
         this.data = localStorage.getItem('data');
         this.dataUser = this.data != null ? JSON.parse(this.data) : [];
         this.user = this.dataUser.length > 0 ? this.dataUser[0].username : '';
@@ -51,21 +52,6 @@ export class AppComponent implements OnInit {
           this.selectedDateTime = dateTime;
           this.filterSelectedDateTime(this.selectedDateTime);
         });
-
-        // Variables' Initialization
-        this.selectedSlots = [];
-
-        this.slots = mydata;
-
-        // Shared parameter "slots"
-        _sharedService.changeParam(this.slots);
-
-        // Calculate max length of slots array
-        this.maxAvailLength = Object.values(this.slots)
-          .map((a) => a.availabilities.length)
-          .reduce((a, b) => Math.max(a, b));
-        // Shared parameter "maxAvailLength"
-        _sharedService.changeMaxLengthParam(this.maxAvailLength);
       }
     });
     _sharedService.authFailed.subscribe((bool) => (this.authFailed = bool));

@@ -36,4 +36,8 @@ export class AuthenticationClient {
       { responseType: 'text' }
     );
   }
+
+  public getSlots(): Observable<any> {
+    return this.http.get('/api/slots');
+  }
 }

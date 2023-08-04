@@ -29,7 +29,9 @@ export class SharedService {
   constructor() {}
 
   // Set the shared slots parameter
-  changeParam(param: any) {
+  slotsParam(param: any) {
+    console.log('changed slots')
+    console.log(param)
     this.paramSource.next(param);
   }
   // Set the shared slots array maxLength parameter
