@@ -96,7 +96,7 @@ export class AuthenticationService {
     console.log('got in getslots');
     this.authenticationClient.getSlots().subscribe((data) => {
       this._sharedService.slotsParam(data);
-      console.log('set slotsParam');
+      console.log('slotsParam is now set!');
     });
     return true;
   }

@@ -1,15 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light"
     *ngIf="router.url !== '/login' && router.url !== '/register'">
     <div class="container-fluid">
-        <a class="navbar-brand" [routerLink]="['/list', {slots}]"><img src="./assets/img/{{title}}.png" alt=""
-                width="65" /></a>
+        <!-- <a class="navbar-brand" [routerLink]="['/list', {slots}]"><img src="./assets/img/{{title}}.png" alt="" -->
+        <a class="navbar-brand" [routerLink]="['/']"><img src="./assets/img/{{title}}.png" alt="" width="65" /></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" *ngIf="router.url !== '/'">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                         Selected Dates
@@ -70,9 +70,55 @@
 
     <router-outlet></router-outlet>
 </div>
-<footer class="text-center text-lg-start bg-white text-muted fixed-bottom border-top">
+<!-- <footer class="text-center text-lg-start bg-white text-muted mt-auto border-top">
     <div class="text-center py-3 bg-light">
         © 2023 Copyright.
         <a class="text-reset" href="https://github.com/tsich">Stella Tsichlaki</a>
     </div>
+</footer> -->
+<footer class="bg-dark text-center text-white mt-auto">
+    <!-- Grid container -->
+    <div class="container p-2 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-2">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light rounded-circle m-1" href="#!" role="button">
+                <fa-icon [icon]="['fab', 'facebook']"></fa-icon>
+            </a>
+
+            <!-- Twitter -->
+            <a class="btn btn-outline-light rounded-circle mx-1" href="#!" role="button">
+                <fa-icon [icon]="['fab', 'twitter']"></fa-icon>
+            </a>
+
+            <!-- Google -->
+            <a class="btn btn-outline-light rounded-circle mx-1" href="#!" role="button">
+                <fa-icon [icon]="['fab', 'google']"></fa-icon>
+            </a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light rounded-circle mx-1" href="#!" role="button">
+                <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
+            </a>
+
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light rounded-circle mx-1" href="#!" role="button">
+                <fa-icon [icon]="['fab', 'linkedin']"></fa-icon>
+            </a>
+
+            <!-- Github -->
+            <a class="btn btn-outline-light rounded-circle mx-1" href="https://github.com/tsich" role="button">
+                <fa-icon [icon]="['fab', 'github']"></fa-icon>
+            </a>
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright.
+        <a class="text-white" href="https://github.com/tsich">Stella Tsichlaki</a>
+    </div>
+    <!-- Copyright -->
 </footer>

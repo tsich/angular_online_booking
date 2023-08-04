@@ -20,10 +20,26 @@ import {
 
 import { faXmarkCircle as fasXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 import { faXmark as fasXmark } from '@fortawesome/free-solid-svg-icons';
+import {
+  faGithub,
+  faFacebook,
+  faInstagram,
+  faGoogle,
+  faTwitter,
+  faLinkedin,
+} from '@fortawesome/free-brands-svg-icons';
 import { RegisterComponent } from './register/register.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, LoginComponent, LogoutComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    ListComponent,
+    LoginComponent,
+    LogoutComponent,
+    RegisterComponent,
+    HomepageComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -40,6 +56,15 @@ import { RegisterComponent } from './register/register.component';
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(fasXmarkCircle, fasXmark);
+    library.addIcons(
+      fasXmarkCircle,
+      fasXmark,
+      faGithub,
+      faFacebook,
+      faInstagram,
+      faGoogle,
+      faTwitter,
+      faLinkedin
+    );
   }
 }
