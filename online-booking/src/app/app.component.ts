@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   user: string = this.dataUser.length > 0 ? this.dataUser[0].username : '';
   slots: any;
   selectedSlots: any[] = [];
-  title = 'onres';
+  title = 'doconapp';
   loggedIn: boolean = false;
   authFailed: boolean | undefined;
 

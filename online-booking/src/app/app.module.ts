@@ -18,7 +18,12 @@ import {
   FontAwesomeModule,
 } from '@fortawesome/angular-fontawesome';
 
-import { faXmarkCircle as fasXmarkCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHospitalUser,
+  faNotesMedical,
+  faUserDoctor,
+  faXmarkCircle as fasXmarkCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { faXmark as fasXmark } from '@fortawesome/free-solid-svg-icons';
 import {
   faGithub,
@@ -64,7 +69,10 @@ export class AppModule {
       faInstagram,
       faGoogle,
       faTwitter,
-      faLinkedin
+      faLinkedin,
+      faUserDoctor,
+      faHospitalUser,
+      faNotesMedical
     );
   }
 }

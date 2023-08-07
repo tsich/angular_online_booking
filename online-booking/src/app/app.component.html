@@ -2,14 +2,14 @@
     *ngIf="router.url !== '/login' && router.url !== '/register'">
     <div class="container-fluid">
         <!-- <a class="navbar-brand" [routerLink]="['/list', {slots}]"><img src="./assets/img/{{title}}.png" alt="" -->
-        <a class="navbar-brand" [routerLink]="['/']"><img src="./assets/img/{{title}}.png" alt="" width="65" /></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <a class="navbar-brand" [routerLink]="['/']"><img src="./assets/img/{{title}}.png" alt="" height="50" /></a>
+        <a role="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown" *ngIf="router.url !== '/'">
+            <ul class="navbar-nav me-auto me-lg-0 mb-2 mb-lg-0" *ngIf="router.url !== '/'">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                         Selected Dates
@@ -44,7 +44,8 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="navbar-nav">
+            <!-- <a class="navbar-brand me-auto ms-auto">{{title}}</a> -->
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <form href="#">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
