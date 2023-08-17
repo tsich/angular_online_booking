@@ -26,13 +26,16 @@ body {
 /* Declare heights because of positioning of img element */
 .carousel-item {
     height: 32rem;
+    background-color: #2E3136;
+    background-size: cover;
+    background-position: center;
 }
 
 .carousel-item>img {
     /* position: absolute; */
     top: 0;
     /* left: 0; */
-    min-width: 95%;
+    min-width: 80%;
     height: 40rem;
 }
 
@@ -56,13 +59,15 @@ body {
     margin-left: .75rem;
 }
 
-.marketing .points{
+.marketing .points {
     width: 80px;
     height: 80px;
 }
-.marketing .points fa-icon{
-   font-size: 28px;
+
+.marketing .points fa-icon {
+    font-size: 28px;
 }
+
 /* rtl:end:ignore */
 
 
@@ -104,4 +109,113 @@ body {
     .featurette-heading {
         margin-top: 7rem;
     }
+}
+
+
+@media screen and (max-width: 1440px) and (min-width: 1200px) {
+    .greyRec {
+        height: 32em !important;
+        width: 65em !important;
+        left: -20em;
+    }
+}
+
+@media (min-width: 1200px) {
+    .rec {
+        height: 34em !important;
+        width: 60em !important;
+        left: -21em;
+    }
+
+    .textTest {
+        left: 11em !important;
+        top: 4em !important;
+    }
+}
+
+
+/* Carousel rectangles */
+.z-index-1 {
+    z-index: 1 !important;
+}
+
+.greyRec {
+    transform: matrix(-6.03, 10.88, -2.01, 1.27, 2, 0);
+    position: absolute;
+    height: 48em !important;
+    width: 50em !important;
+    left: -25.5em;
+    top: 0px;
+    background: linear-gradient(113.52deg, #FFFFFF 21.3%, rgba(255, 254, 254, 0) 95.3%);
+    opacity: 0.4;
+}
+
+.z-index-3 {
+    z-index: 3 !important;
+}
+
+.rec {
+    transform: matrix(-6.03, 10.88, -2.01, 1.27, 2, 0);
+    position: absolute;
+    height: 48em !important;
+    width: 50em !important;
+    left: -27em;
+    top: 0px;
+    background: linear-gradient(71.34deg, #1852a9e8 46.88%, rgb(198 234 247 / 74%) 70.81%, rgba(87, 136, 171, 0.660596) 92.08%, rgba(195, 212, 224, 0.23546) 109.81%, rgba(255, 254, 254, 0) 131.96%)
+}
+
+.textTest {
+    position: absolute;
+    left: 5em;
+    top: 7em;
+    height: 4em !important;
+}
+
+
+.textBoxStyle {
+    color: white;
+    font-size: 2em !important;
+    font-weight: 700;
+    line-height: 55px;
+    letter-spacing: 0.05em;
+    text-transform: none;
+}
+
+.appear-animation-visible {
+    opacity: 1;
+}
+
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+/* Fade In Down Shorter */
+@-webkit-keyframes fadeInDownShorter {
+    from {
+        opacity: 0;
+        transform: translate(-15rem, -50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fadeInDownShorter {
+    from {
+        opacity: 0;
+        transform: translate(-15rem, -50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.fadeInDownShorter {
+    -webkit-animation-name: fadeInDownShorter;
+    animation-name: fadeInDownShorter;
 }

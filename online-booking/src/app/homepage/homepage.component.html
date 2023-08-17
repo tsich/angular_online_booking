@@ -6,20 +6,40 @@
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active bg-light">
-                <img class="rounded mx-auto d-block" src="./assets/img/carous1.jpg" alt="">
-
-                <div class="container">
-                    <div class="carousel-caption rounded bg-secondary bg-opacity-25 px-2 text-start">
-                        <h1>Schedule an appointment</h1>
-                        <p>Online appointments and doctor availability checks are quick and easy.</p>
+        <div class="carousel-inner rounded">
+            <div class="carousel-item active bg-light" style="background-image: url(./assets/img/carous2.jpg);">
+                <div class="row">
+                    <div class="col-2 col-lg-3">
+                        <span class="rec z-index-3"></span>
+                        <span class="greyRec z-index-1"></span>
+                        <span class="position-relative fixedImg">
+                            <!-- <img class="testpos z-index-3" src="https://www.forth.gr/files/forth-ite-el.jpg"
+                            alt="faistos disk" data-src="https://www.forth.gr/files/forth-ite-el.jpg"> -->
+                        </span>
+                        <div class="align-items-center justify-content-center h-100 z-index-3 textTest">
+                            <h3 class="position-relative textBoxStyle appear-animation animated fadeInDownShorter appear-animation-visible"
+                                data-appear-animation="fadeInDownShorter" data-appear-animation-delay="0"
+                                style="animation-delay: 0ms;">1983 - 2023: Celebrating 40 Years of Excellence!</h3>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="carousel-caption rounded bg-secondary bg-opacity-25 px-2 text-start">
+                            <h1>Schedule an appointment</h1>
+                            <p>Online appointments and doctor availability checks are quick and easy.</p>
+                        </div>
                     </div>
                 </div>
+                <!-- <img class="mx-auto d-block" src="./assets/img/carous2.jpg" alt=""> -->
             </div>
-            <div class="carousel-item bg-light">
-                <img class="rounded mx-auto d-block" src="./assets/img/carous2.jpg" alt="">
-
+            <div class="carousel-item bg-light" style="background-image: url(./assets/img/carous1.jpg);">
+                <div class="col-2 col-lg-3">
+                    <span class="rec z-index-3"></span>
+                    <span class="greyRec z-index-1"></span>
+                    <span class="position-relative fixedImg">
+                        <!-- <img class="testpos z-index-3" src="https://www.forth.gr/files/forth-ite-el.jpg"
+                            alt="faistos disk" data-src="https://www.forth.gr/files/forth-ite-el.jpg"> -->
+                    </span>
+                </div>
                 <div class="container">
                     <div class="carousel-caption rounded bg-secondary bg-opacity-25 px-2">
                         <h1>Appointments made easy</h1>
@@ -27,9 +47,15 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item bg-light">
-                <img class="rounded mx-auto d-block" src="./assets/img/carous3.jpg" alt="">
-
+            <div class="carousel-item bg-light" style="background-image: url(./assets/img/carous3.jpg);">
+                <div class="col-2 col-lg-3">
+                    <span class="rec z-index-3"></span>
+                    <span class="greyRec z-index-1"></span>
+                    <span class="position-relative fixedImg">
+                        <!-- <img class="testpos z-index-3" src="https://www.forth.gr/files/forth-ite-el.jpg"
+                            alt="faistos disk" data-src="https://www.forth.gr/files/forth-ite-el.jpg"> -->
+                    </span>
+                </div>
                 <div class="container">
                     <div class="carousel-caption rounded bg-secondary bg-opacity-25 px-2 text-end">
                         <h1>Doctor availability</h1>
@@ -38,7 +64,7 @@
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <button class="carousel-control-prev z-index-3" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
@@ -52,9 +78,7 @@
     <!-- Marketing messaging and featurettes
   ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
-
     <div class="container marketing">
-
         <!-- Three columns of text below the carousel -->
         <div class="row">
             <div class="col-lg-4">
@@ -68,7 +92,7 @@
                     first
                     column.</p>
                 <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
+            </div>
             <div class="col-lg-4">
                 <span
                     class="border rounded-circle mx-auto d-inline-flex align-items-center justify-content-center bg-light points">
@@ -80,7 +104,7 @@
                     column.
                 </p>
                 <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
+            </div>
             <div class="col-lg-4">
                 <span
                     class="border rounded-circle mx-auto d-inline-flex align-items-center justify-content-center bg-light points">
@@ -90,9 +114,8 @@
                 <h2>Heading</h2>
                 <p>And lastly this, the third column of representative placeholder content.</p>
                 <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
-
+            </div>
+        </div>
 
         <!-- START THE FEATURETTES -->
 
@@ -145,8 +168,7 @@
         <hr class="featurette-divider">
 
         <!-- /END THE FEATURETTES -->
-
-    </div><!-- /.container -->
+    </div>
 
     <a class="navbar-brand" [routerLink]="['/list']">Go to listing</a>
 
