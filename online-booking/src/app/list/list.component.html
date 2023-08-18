@@ -32,7 +32,7 @@
                                         <ng-container *ngIf="ai<maxAvailLength; else elseBlock">
                                             <td>
                                                 <button class="btn btn-primary"
-                                                    (click)="onSelectDateTime(slot.day, slotTime.time)">
+                                                    (click)="onSelectDateTime(slot.day, slotTime.time, selectedSpeciality)">
                                                     {{slotTime.time}}
                                                 </button>
                                             </td>

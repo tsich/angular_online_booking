@@ -55,9 +55,9 @@ export class SharedService {
     this.emitChangeSource.next(change);
   }
 
-  emitSetDateTime(dateTime: any) {
+  emitSetDateTime(selection: any) {
     console.log('Shared service: emitSetDateTime');
-    this.emitChangeDateTime.next(dateTime);
+    this.emitChangeDateTime.next(selection);
   }
 
   emitOnLoggedIn(logged: boolean) {

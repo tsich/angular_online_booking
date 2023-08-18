@@ -51,10 +51,10 @@ export class ListComponent implements OnInit {
   ngOnInit() {}
 
   // In this function fire onSelected & onCheck functions from app-component
-  onSelectDateTime(day: string, time: string) {
+  onSelectDateTime(day: string, time: string, speciality: string) {
     // var dateTime = day + ' ' + time;
     // console.log(dateTime);
-    this._sharedService.emitSetDateTime({ day, time });
+    this._sharedService.emitSetDateTime({ day, time, speciality });
   }
 
   onSelectSpeciality(e: any) {
