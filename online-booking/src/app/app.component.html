@@ -8,6 +8,13 @@
             <span class="navbar-toggler-icon"></span>
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto me-lg-0 mb-2 mb-lg-0" *ngIf="router.url == '/'">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" [routerLink]="['/list']">
+                        Book an appointment
+                    </a>
+                </li>
+            </ul>
             <ul class="navbar-nav me-auto me-lg-0 mb-2 mb-lg-0" *ngIf="router.url !== '/'">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -35,8 +42,8 @@
                             </ng-container>
                         </ng-container>
                         <ng-template #defaultLi>
-                            <li>
-                                <span class="ms-2">
+                            <li class="ms-2">
+                                <span>
                                     <small>You have not selected any dates!</small>
                                 </span>
                             </li>
@@ -49,7 +56,10 @@
                 <li class="nav-item dropdown">
                     <form href="#">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">{{user}}
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <c-avatar color="secondary" textColor="white" class="text-uppercase"
+                                size="sm">{{user.charAt(0)}}</c-avatar>
+                            {{user}}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" href="">My appointments</a></li>

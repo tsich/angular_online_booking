@@ -1,0 +1,23 @@
+@import "../node_modules/@coreui/coreui/scss/coreui.scss";
+
+/* You can add global styles to this file, and also import other style files */
+.datetimeSelection {
+  min-width: 14rem !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+#btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+}

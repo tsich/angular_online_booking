@@ -1,4 +1,10 @@
 <main>
+    <!-- Back to top button -->
+    <button type="button" (click)="backToTop()" class="btn btn-danger rounded-circle btn-lg" id="btn-back-to-top">
+        <fa-icon icon="chevron-up" class="fs-5 text-light"></fa-icon>
+    </button>
+
+
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
@@ -123,7 +129,7 @@
                 </h2>
                 <ul class="lead list-group list-group-flush">
                     <li class="list-group-item border-0">
-                        You can easily and quickly book your medical appointment at Health Care facilities.</li>
+                        You can easily and quickly book your medical appointment at Health Care facilities</li>
                 </ul>
             </div>
             <div class="col-md-5 text-end">
@@ -169,14 +175,5 @@
                 <img src="./assets/img/marketing1.jpg" class="img-fluid" />
             </div>
         </div>
-
-
-        <!-- /END THE FEATURETTES -->
     </div>
-    <a class="navbar-brand" [routerLink]="['/list']">Go to listing</a>
-
-    <!-- FOOTER -->
-    <footer class="container">
-        <p class="float-end"><a href="#">Back to top</a></p>
-    </footer>
 </main>

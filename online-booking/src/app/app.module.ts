@@ -13,6 +13,10 @@ import { TokenInterceptor } from './helpers/token.interceptor';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 
+// Angular CoreUI
+import { AvatarModule } from '@coreui/angular';
+// import '@coreui/coreui/scss/coreui';
+
 import {
   FaIconLibrary,
   FontAwesomeModule,
@@ -23,6 +27,7 @@ import {
   faNotesMedical,
   faUserDoctor,
   faXmarkCircle as fasXmarkCircle,
+  faChevronUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { faXmark as fasXmark } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -52,6 +57,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     ReactiveFormsModule,
     FontAwesomeModule,
     AppRoutingModule,
+    AvatarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
@@ -72,7 +78,8 @@ export class AppModule {
       faLinkedin,
       faUserDoctor,
       faHospitalUser,
-      faNotesMedical
+      faNotesMedical,
+      faChevronUp
     );
   }
 }
