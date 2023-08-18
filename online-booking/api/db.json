@@ -11,10 +11,48 @@
       "password": "test"
     }
   ],
+  "specialities": [
+    {
+      "id": 1,
+      "entityId": "E001",
+      "name": "Endocrinology"
+    },
+    {
+      "id": 2,
+      "entityId": "P0011",
+      "name": "Pathology"
+    },
+    {
+      "id": 3,
+      "entityId": "N1002",
+      "name": "Neurology"
+    },
+    {
+      "id": 4,
+      "entityId": "OR2023",
+      "name": "Orthopaedic"
+    },
+    {
+      "id": 5,
+      "entityId": "GYN500",
+      "name": "Gynaecology"
+    },
+    {
+      "id": 6,
+      "entityId": "OP123",
+      "name": "Ophthalmology"
+    },
+    {
+      "id": 7,
+      "entityId": "GP3210",
+      "name": "General Practice (GP)"
+    }
+  ],
   "slots": [
     {
       "id": 0,
       "day": "Monday",
+      "entityId": "GYN500",
       "availabilities": [
         {
           "time": "09:30"
@@ -42,6 +80,7 @@
     {
       "id": 1,
       "day": "Monday",
+      "entityId": "OP123",
       "availabilities": [
         {
           "time": "14:00"
@@ -63,6 +102,7 @@
     {
       "id": 2,
       "day": "Tuesday",
+      "entityId": "GP3210",
       "availabilities": [
         {
           "time": "10:30"
@@ -81,6 +121,7 @@
     {
       "id": 3,
       "day": "Wednesday",
+      "entityId": "E001",
       "availabilities": [
         {
           "time": "11:30"
@@ -93,6 +134,25 @@
         },
         {
           "time": "11:45"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "day": "Thursday",
+      "entityId": "GP3210",
+      "availabilities": [
+        {
+          "time": "10:30"
+        },
+        {
+          "time": "11:00"
+        },
+        {
+          "time": "11:30"
+        },
+        {
+          "time": "12:00"
         }
       ]
     }

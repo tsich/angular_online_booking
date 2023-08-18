@@ -7,37 +7,41 @@ import { AuthenticationService } from '../_services/authentication.service';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
-  // slots: any;
   slots: any[] = [];
-  // maxAvailLength: any;
+  specialities: any[] = [];
   maxAvailLength!: number;
-  selectedValue = 'All';
+  selectedValue = '';
+  selectedSpeciality = 'test';
 
   constructor(
     private _sharedService: SharedService,
     private authenticationService: AuthenticationService
   ) {
+    this._sharedService.sharedSpecialParam.subscribe((data) => {
+      // if data exist (!null !false !empty)
+      if (data) {
+        this.specialities = data;
+      }
+    });
+
     // Get shared values from service to component's variables
     this._sharedService.sharedParam.subscribe((data) => {
       if (data) {
         // if data exist (!null !false !empty)
         this.slots = data;
-        console.log(this.slots.map((a) => a.availabilities.length));
         this.maxAvailLength = Object.values(this.slots)
           .map((a) => a.availabilities.length)
           .reduce((a, b) => Math.max(a, b));
+      } else {
+        this.slots = [];
       }
+      console.log(this.slots);
     });
-    // Calculate max length of slots array
-
     // Shared parameter "maxAvailLength"
-    _sharedService.changeMaxLengthParam(this.maxAvailLength);
+    this._sharedService.changeMaxLengthParam(this.maxAvailLength);
+
     // Set login status
     this._sharedService.emitOnLoggedIn(this.authenticationService.isLoggedIn());
-  }
-
-  onClick() {
-    this._sharedService.emitChange('Data from child');
   }
 
   @Output() onSelected = new EventEmitter<any>();
@@ -47,9 +51,17 @@ export class ListComponent implements OnInit {
   ngOnInit() {}
 
   // In this function fire onSelected & onCheck functions from app-component
-  onSelectedDateTime(day: string, time: string) {
-    var dateTime = day + ' ' + time;
-    console.log(dateTime);
+  onSelectDateTime(day: string, time: string) {
+    // var dateTime = day + ' ' + time;
+    // console.log(dateTime);
     this._sharedService.emitSetDateTime({ day, time });
+  }
+
+  onSelectSpeciality(e: any) {
+    console.log('selected speciality entityId: ' + e.target.value);
+    this.selectedValue = e.target.value;
+    this.selectedSpeciality =
+      e.target.options[e.target.selectedIndex].innerHTML;
+    this.authenticationService.getSlots(e.target.value);
   }
 }

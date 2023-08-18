@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   dataUser: any[] = this.data != null ? JSON.parse(this.data) : [];
   user: string = this.dataUser.length > 0 ? this.dataUser[0].username : '';
   slots: any;
+  specialities: any;
   selectedSlots: any[] = [];
   title = 'doconapp';
   loggedIn: boolean = false;
@@ -31,11 +32,12 @@ export class AppComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private weatherClient: WeatherClient
   ) {
-    _sharedService.isUserLoggedIn.subscribe((val) => {
-      this.loggedIn = val;
-      if (this.loggedIn && this.authenticationService.getSlots()) {
-        _sharedService.sharedParam.subscribe((val) => {
-          this.slots = val;
+    _sharedService.isUserLoggedIn.subscribe((loggedIn) => {
+      // If user is logged in and specialities are fetched from json db
+      if (loggedIn && this.authenticationService.getSpecialities()) {
+        // Set the specialities from shared service
+        _sharedService.sharedParam.subscribe((data) => {
+          this.specialities = data;
         });
 
         this.data = localStorage.getItem('data');
@@ -74,8 +76,8 @@ export class AppComponent implements OnInit {
       ),
       1
     );
-    console.log(this.selectedSlots);
-    console.log(this.selectedSlots.findIndex((e) => e.day == el.day));
+    // console.log(this.selectedSlots);
+    // console.log(this.selectedSlots.findIndex((e) => e.day == el.day));
   }
 
   ngOnInit(): void {}
