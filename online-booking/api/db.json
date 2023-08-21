@@ -1,14 +1,11 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "user",
-      "password": "pass"
-    },
-    {
-      "id": 2,
       "username": "test",
-      "password": "test"
+      "email": "test@test.com",
+      "password": "test",
+      "sin": "0000000001",
+      "id": 1
     }
   ],
   "specialities": [

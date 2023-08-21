@@ -22,6 +22,7 @@ export class LoginComponent {
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
+      sin: new FormControl('', Validators.required),
     });
   }
 
@@ -29,7 +30,8 @@ export class LoginComponent {
     this.loading = true;
     this.authenticationService.login(
       this.loginForm.get('username')!.value,
-      this.loginForm!.get('password')!.value
+      this.loginForm!.get('password')!.value,
+      this.loginForm!.get('sin')!.value
     );
   }
 }

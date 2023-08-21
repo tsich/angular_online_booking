@@ -11,12 +11,17 @@ export class AuthenticationClient {
   constructor(private http: HttpClient) {}
 
   // Public login function to get db data
-  public login(username: string, password: string): Observable<string> {
+  public login(
+    username: string,
+    password: string,
+    sin: string
+  ): Observable<string> {
     // this.teams$.subscribe((res) => console.log(res));
     return this.http.get('/api/users', {
       params: {
         username: username,
         password: password,
+        sin: sin,
       },
       responseType: 'text',
     });
@@ -26,7 +31,8 @@ export class AuthenticationClient {
   public register(
     username: string,
     email: string,
-    password: string
+    password: string,
+    sin: string
   ): Observable<string> {
     return this.http.post(
       '/api/users',
@@ -34,6 +40,7 @@ export class AuthenticationClient {
         username: username,
         email: email,
         password: password,
+        sin: sin,
       },
       { responseType: 'text' }
     );

@@ -20,6 +20,7 @@ export class RegisterComponent {
       username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
+      sin: new FormControl('', Validators.required),
     });
   }
 
@@ -28,7 +29,8 @@ export class RegisterComponent {
     this.authenticationService.register(
       this.registerForm.get('username')!.value,
       this.registerForm.get('email')!.value,
-      this.registerForm!.get('password')!.value
+      this.registerForm!.get('password')!.value,
+      this.registerForm!.get('sin')!.value
     );
   }
 }

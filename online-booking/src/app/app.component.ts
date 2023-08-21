@@ -13,8 +13,9 @@ import { AuthenticationService } from './_services/authentication.service';
 })
 export class AppComponent implements OnInit {
   data: any = localStorage.getItem('data');
-  dataUser: any[] = this.data != null ? JSON.parse(this.data) : [];
-  user: string = this.dataUser.length > 0 ? this.dataUser[0].username : '';
+  dataUser: any = this.data != null ? JSON.parse(this.data) : [];
+  user: string =
+    Object.keys(this.dataUser).length > 0 ? this.dataUser.username : '';
   slots: any;
   specialities: any;
   selectedSlots: any[] = [];
@@ -42,7 +43,9 @@ export class AppComponent implements OnInit {
 
         this.data = localStorage.getItem('data');
         this.dataUser = this.data != null ? JSON.parse(this.data) : [];
-        this.user = this.dataUser.length > 0 ? this.dataUser[0].username : '';
+        console.log(this.dataUser);
+        this.user =
+          Object.keys(this.dataUser).length > 0 ? this.dataUser.username : '';
 
         // Shared service emmits
         _sharedService.changeEmitted$.subscribe((text) => {

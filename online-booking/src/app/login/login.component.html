@@ -1,22 +1,35 @@
 <div class="container">
-    <form [formGroup]="loginForm">
-        <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
-                formControlName="username">
-            <div id="usernameHelp" class="form-text">We'll never share your username with anyone else.</div>
+    <div class="row justify-content-center my-4">
+        <div class="col-8">
+            <form [formGroup]="loginForm">
+                <div class="mb-2">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="username" formControlName="username">
+                </div>
+                <div class="mb-2">
+                    <label for="exampleInputPassword1" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+                </div>
+                <div class="mb-3">
+                    <label for="sin" class="form-label">SIN:</label>
+                    <input type="text" class="form-control" id="sin" aria-describedby="sinHelp" formControlName="sin">
+                    <div id="sinHelp" class="form-text">Please insert your Social Insurance Number.</div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-end">
+                        <button class="btn btn-primary px-5" (click)="onSubmit()">
+                            <!-- <button [disabled]="loading" class="btn btn-primary" (click)="onSubmit()"> -->
+                            <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+                            Login
+                        </button>
+                    </div>
+                    <div class="col-12 text-center">
+                        <a class="small" routerLink="/register" routerLinkActive="active">
+                            Don't have an account? <b>Register here.</b>
+                        </a>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
-        </div>
-        <button class="btn btn-primary" (click)="onSubmit()">
-            <!-- <button [disabled]="loading" class="btn btn-primary" (click)="onSubmit()"> -->
-            <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
-            Login
-        </button>
-        <button class="btn btn-secondary" routerLink="/register" routerLinkActive="active">
-            Don't have an account? Register here.
-        </button>
-    </form>
+    </div>
 </div>
