@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './../_services/authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SharedService } from '../_services/shared-service.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class RegisterComponent {
   public registerForm!: FormGroup;
 
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private _sharedService: SharedService
+  ) {
+    this._sharedService.emitOnFailedLogIn(false);
+  }
 
   ngOnInit() {
     //  handle a reactive form with our controls

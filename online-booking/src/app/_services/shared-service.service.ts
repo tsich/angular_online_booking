@@ -42,7 +42,7 @@ export class SharedService {
   specialitiesParam(param: any) {
     // console.log(param);
     this.paramSpecialSource.next(param);
-    console.log('changed spacialities');
+    console.log('changed specialities');
   }
   // Set the shared slots array maxLength parameter
   changeMaxLengthParam(param: any) {

@@ -33,24 +33,27 @@ export class AuthenticationService {
 
   // Public login function
   public login(username: string, password: string, sin: string): void {
-    // console.log(username + ' ' + password);
+    console.log(username + ' ' + password + ' ' + sin);
     this.authenticationClient
       .login(username, password, sin)
       .subscribe((dataOrigin) => {
-        const data = JSON.parse(dataOrigin)[0];
-        console.log(data);
-        if (Object.keys(data).length) {
-          // Generate a token with a stable + random int length
-          var token = this.generateToken(
-            data.username.length + Math.floor(Math.random() * 10 + 2)
-          );
-          // console.log(token);
-          localStorage.setItem(this.tokenKey, token);
-          localStorage.setItem('data', JSON.stringify(data));
-          // console.log('fired getSpecialities from login');
-          // this.getSlots();
-          this.getSpecialities();
-          this.router.navigate(['/']);
+        console.log(dataOrigin);
+        if (JSON.parse(dataOrigin).length > 0) {
+          const data = JSON.parse(dataOrigin)[0];
+          console.log(data);
+          if (Object.keys(data).length) {
+            // Generate a token with a stable + random int length
+            let token = this.generateToken(
+              data.username.length + Math.floor(Math.random() * 10 + 2)
+            );
+            // console.log(token);
+            localStorage.setItem(this.tokenKey, token);
+            localStorage.setItem('data', JSON.stringify(data));
+            // console.log('fired getSpecialities from login');
+            // this.getSlots();
+            this.getSpecialities();
+            this.router.navigate(['/']);
+          }
         } else {
           this._sharedService.emitOnFailedLogIn(true);
         }

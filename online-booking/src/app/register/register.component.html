@@ -1,31 +1,33 @@
 <div class="container">
     <div class="row justify-content-center my-4">
         <div class="col-8">
-            <form [formGroup]="registerForm">
+            <form [formGroup]="registerForm" ngNativeValidate>
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" formControlName="username">
+                    <input type="text" class="form-control" id="username" formControlName="username" required>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email">
+                    <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" required>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+                    <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"
+                        required>
                 </div>
                 <div class="mb-3">
                     <label for="sin" class="form-label">SIN:</label>
-                    <input type="text" class="form-control" id="sin" aria-describedby="sinHelp" formControlName="sin">
+                    <input type="text" class="form-control" id="sin" aria-describedby="sinHelp" formControlName="sin"
+                        required>
                     <div id="sinHelp" class="form-text">Please insert your Social Insurance Number.</div>
                 </div>
                 <div class="row">
                     <div class="col-12 text-end">
-                        <button class="btn btn-primary px-5" (click)="onSubmit()">
+                        <button class="btn btn-primary px-5" (click)="registerForm.valid ? onSubmit(): null">
                             Register
                         </button>
                     </div>
-                    <div class="col-12 text-center">
+                    <div class=" col-12 text-center">
                         <a class="small" routerLink="/login" routerLinkActive="active">
                             Already have an account? <b>Login here.</b>
                         </a>

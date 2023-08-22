@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { SharedService } from '../_services/shared-service.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,12 @@ export class LoginComponent {
   loading = false;
   public loginForm!: FormGroup;
 
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private _sharedService: SharedService
+  ) {
+    this._sharedService.emitOnFailedLogIn(false);
+  }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
