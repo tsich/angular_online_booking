@@ -6,19 +6,20 @@ export class SharedService {
   private paramSource = new BehaviorSubject(null);
   private paramSpecialSource = new BehaviorSubject(null);
   private maxLenSource = new BehaviorSubject(null);
+
   sharedParam = this.paramSource.asObservable();
   sharedSpecialParam = this.paramSpecialSource.asObservable();
   sharedMaxLen = this.maxLenSource.asObservable();
-
-  // Observable string sources
-  private emitChangeSource = new Subject<any>();
-  // Observable string streams
-  changeEmitted$ = this.emitChangeSource.asObservable();
 
   // Observable string sources for selected dateTime
   private emitChangeDateTime = new Subject<any>();
   // Observable string streams
   emitChangeDT$ = this.emitChangeDateTime.asObservable();
+
+  // Observable array sources for selected slots
+  private emitOnSelectedSlots = new BehaviorSubject([]);
+  // Observable array streams
+  selectedSlots$ = this.emitOnSelectedSlots.asObservable();
 
   // BehaviorSubject boolean for login state
   public isUserLoggedIn: BehaviorSubject<boolean> =
@@ -49,15 +50,16 @@ export class SharedService {
     this.maxLenSource.next(param);
   }
 
-  // Service message commands
-  emitChange(change: any) {
-    console.log('Shared service: emitChange');
-    this.emitChangeSource.next(change);
-  }
-
+  // When a dateTime of a speciality is selected
   emitSetDateTime(selection: any) {
     console.log('Shared service: emitSetDateTime');
     this.emitChangeDateTime.next(selection);
+  }
+
+  // Set the user appointments selections
+  setSelectedSlots(selections: any) {
+    this.emitOnSelectedSlots.next(selections);
+    localStorage.setItem('selectedSlots', selections);
   }
 
   emitOnLoggedIn(logged: boolean) {

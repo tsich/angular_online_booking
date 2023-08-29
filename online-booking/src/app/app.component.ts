@@ -20,7 +20,8 @@ export class AppComponent implements OnInit {
   specialities: any;
   selectedSlots: any[] = [];
   title = 'doconapp';
-  loggedIn: boolean = false;
+  loggedIn: boolean =
+    localStorage.getItem('token') != null;
   authFailed: boolean | undefined;
 
   selectedDateTime: any;
@@ -47,11 +48,6 @@ export class AppComponent implements OnInit {
         this.user =
           Object.keys(this.dataUser).length > 0 ? this.dataUser.username : '';
 
-        // Shared service emmits
-        _sharedService.changeEmitted$.subscribe((text) => {
-          console.log(text);
-        });
-
         // Get selected dateTime from service
         _sharedService.emitChangeDT$.subscribe((dateTime) => {
           this.selectedDateTime = dateTime;
@@ -59,7 +55,9 @@ export class AppComponent implements OnInit {
         });
       }
     });
+    console.log('loggedIn: ' + this.loggedIn);
     _sharedService.authFailed.subscribe((bool) => (this.authFailed = bool));
+    console.log('authFailed: ' + this.authFailed);
   }
 
   // Filter datetime selections
@@ -69,6 +67,11 @@ export class AppComponent implements OnInit {
     ).length > 0
       ? console.log('This item already exists')
       : this.selectedSlots.push(selection);
+    this._sharedService.setSelectedSlots(this.selectedSlots);
+    this._sharedService.selectedSlots$.subscribe((selection) => {
+      console.log('Selected slots: ');
+      console.log(selection);
+    });
   }
 
   // Remove datetime from selection list
@@ -79,6 +82,7 @@ export class AppComponent implements OnInit {
       ),
       1
     );
+    this._sharedService.setSelectedSlots(this.selectedSlots);
     // console.log(this.selectedSlots);
     // console.log(this.selectedSlots.findIndex((e) => e.day == el.day));
   }

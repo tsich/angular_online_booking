@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <table class="table table-hover caption-top w-100">
+                <caption>Selected Dates</caption>
+                <tbody>
+                    <tr *ngFor="let sel of selectedSlots">
+                        <td>{{sel.speciality + " - "+ sel.day + " " + sel.time}}</td>
+                        <td>
+                            <div class="px-1 align-self-center">
+                                <a class="btn btn-link">
+                                    <fa-icon icon="xmark"></fa-icon>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

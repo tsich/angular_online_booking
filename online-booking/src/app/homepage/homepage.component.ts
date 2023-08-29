@@ -1,4 +1,5 @@
 import { HostListener, Component } from '@angular/core';
+import { SharedService } from '../_services/shared-service.service';
 
 @Component({
   selector: 'app-homepage',
@@ -25,5 +26,10 @@ export class HomepageComponent {
     console.log('clicked BACK TO TOP BTN');
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+  }
+
+  constructor(private _sharedService: SharedService) {
+    _sharedService.emitOnLoggedIn(true);
+    _sharedService.emitOnFailedLogIn(false);
   }
 }

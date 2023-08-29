@@ -40,6 +40,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { RegisterComponent } from './register/register.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     LogoutComponent,
     RegisterComponent,
     HomepageComponent,
+    MyAppointmentsComponent,
   ],
   imports: [
     BrowserModule,

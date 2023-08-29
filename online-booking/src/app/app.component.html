@@ -14,7 +14,7 @@
                     </a>
                 </li>
             </ul>
-            <ul class="navbar-nav me-auto me-lg-0 mb-2 mb-lg-0" *ngIf="router.url !== '/'">
+            <ul class="navbar-nav me-auto me-lg-0 mb-2 mb-lg-0" *ngIf="router.url == '/list'">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
@@ -26,7 +26,7 @@
                                 <li>
                                     <div class="d-flex justify-content-between">
                                         <div class="px-1 ms-2 align-self-center">
-                                            <span>{{sel.speciality + " - "+sel.day + " " + sel.time}}</span>
+                                            <span>{{sel.speciality + " - "+ sel.day + " " + sel.time}}</span>
                                         </div>
                                         <div class="px-1 align-self-center">
                                             <a class="btn btn-link" (click)="removeDateTime(sel)">
@@ -61,7 +61,7 @@
                             {{user}}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="">My appointments</a></li>
+                            <li><a class="dropdown-item" [routerLink]="['/appointments']">My appointments</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
