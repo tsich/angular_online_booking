@@ -9,6 +9,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
+import { SuccessBookingComponent } from './success-booking/success-booking.component';
 
 // Add a new routes array to store the paths that you will use when routing to each page.
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'appointments', component: MyAppointmentsComponent },
+  { path: 'success', component: SuccessBookingComponent },
 ];
 
 @NgModule({

@@ -3,11 +3,11 @@ import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class SharedService {
-  private paramSource = new BehaviorSubject(null);
+  private paramSlots = new BehaviorSubject(null);
   private paramSpecialSource = new BehaviorSubject(null);
   private maxLenSource = new BehaviorSubject(null);
 
-  sharedParam = this.paramSource.asObservable();
+  sharedParamSlots = this.paramSlots.asObservable();
   sharedSpecialParam = this.paramSpecialSource.asObservable();
   sharedMaxLen = this.maxLenSource.asObservable();
 
@@ -34,9 +34,9 @@ export class SharedService {
   // Set the shared slots parameter
   slotsParam(param: any) {
     // If the slots array length > 0 pass the array to the Observable
-    if (param.length > 0) this.paramSource.next(param);
+    if (param.length > 0) this.paramSlots.next(param);
     // else pass null
-    else this.paramSource.next(null);
+    else this.paramSlots.next(null);
     console.log('changed slots');
   }
   // Set the shared specialities parameter
@@ -58,8 +58,9 @@ export class SharedService {
 
   // Set the user appointments selections
   setSelectedSlots(selections: any) {
+    localStorage.setItem('selectedSlots', JSON.stringify(selections));
+    console.log(localStorage);
     this.emitOnSelectedSlots.next(selections);
-    localStorage.setItem('selectedSlots', selections);
   }
 
   emitOnLoggedIn(logged: boolean) {

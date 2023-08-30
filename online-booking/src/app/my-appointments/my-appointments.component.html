@@ -1,21 +1,53 @@
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-8">
-            <table class="table table-hover caption-top w-100">
-                <caption>Selected Dates</caption>
-                <tbody>
-                    <tr *ngFor="let sel of selectedSlots">
-                        <td>{{sel.speciality + " - "+ sel.day + " " + sel.time}}</td>
-                        <td>
-                            <div class="px-1 align-self-center">
-                                <a class="btn btn-link">
-                                    <fa-icon icon="xmark"></fa-icon>
-                                </a>
+        <div class="col-lg-8">
+            <div class="card shadow-lg rounded-3">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">My Appointments</h5>
+                    <ng-container *ngFor="let sel of selectedSlots; let i = index">
+                        <div class="mb-4">
+                            <h6 class="card-subtitle mb-2 text-muted">Appointment {{ i + 1 }}</h6>
+                            <div class="mb-2">
+                                <label for="selectedDate{{ i }}" class="form-label">Selected Date</label>
+                                <input type="text" class="form-control" id="selectedDate{{ i }}" [value]="sel.day"
+                                    readonly>
                             </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            <div class="mb-2">
+                                <label for="selectedTime{{ i }}" class="form-label">Selected Time</label>
+                                <input type="text" class="form-control" id="selectedTime{{ i }}" [value]="sel.time"
+                                    readonly>
+                            </div>
+                            <div>
+                                <label for="doctorOffice{{ i }}" class="form-label">Doctor's Office</label>
+                                <input type="text" class="form-control" id="doctorOffice{{ i }}"
+                                    [value]="sel.speciality" readonly>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="selectedSlots.length>0; else otherBlock">
+                        <div class="col-12">
+                            <div class="row justify-content-between">
+                                <div class="col-6 col-lg-6 text-start">
+                                    <a class="btn btn-secondary px-5" [routerLink]="['/list']">
+                                        Cancel
+                                    </a>
+                                </div>
+                                <div class="col-6 col-lg-6 text-end">
+                                    <a class="btn btn-info px-5 text-white" [routerLink]="['/success']">
+                                        Submit
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-template #otherBlock>
+                        <div class="mb-4">
+                            <h6 class="card-subtitle mb-2 text-muted">You haven't made any selections</h6>
+                        </div>
+                        <a class="btn btn-secondary px-5" routerLink="/list">Return</a>
+                    </ng-template>
+                </div>
+            </div>
         </div>
     </div>
 </div>

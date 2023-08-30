@@ -1,5 +1,5 @@
-<div class="row justify-content-center">
-    <div class="col-5">
+<div class="row justify-content-center mt-5">
+    <div class="col-12 col-lg-5">
         <label class="form-label">Choose Speciality:</label>
         <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedValue"
             (change)="onSelectSpeciality($event)">
@@ -10,15 +10,15 @@
         </select>
     </div>
 </div>
-<div class="row justify-content-center">
-    <div class="col-11">
+<div class="row justify-content-center mt-5">
+    <div class="col-12 col-lg-11">
         <div class="row justify-content-center" *ngIf="selectedValue">
-            <div class="col-9 text-center">
+            <div class="col-12 col-lg-9 text-center">
                 <h6 class="fw-bold py-4 fs-5">{{selectedSpeciality}} Availabilities:</h6>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center mb-3">
                 <ng-container *ngIf="slots.length>0; else emptyDateTime">
-                    <div class="col-2" *ngFor="let slot of slots; let i = index; let indexPrev = index">
+                    <div class="col-3 col-lg-2" *ngFor="let slot of slots; let i = index; let indexPrev = index">
                         <table class="table table-borderless text-center caption-top"
                             *ngIf="selectedValue == slot.entityId || selectedValue == 'All'">
                             <thead>
@@ -32,7 +32,7 @@
                                         <ng-container *ngIf="ai<maxAvailLength; else elseBlock">
                                             <td>
                                                 <button class="btn btn-primary"
-                                                    (click)="onSelectDateTime(slot.day, slotTime.time, selectedSpeciality)">
+                                                    (click)="onSelectDateTime(slot.day, slotTime.time, selectedSpeciality, selectedSpecialityID)">
                                                     {{slotTime.time}}
                                                 </button>
                                             </td>
@@ -47,9 +47,24 @@
                     </div>
                 </ng-container>
                 <ng-template #emptyDateTime>
-                    <div class="col-8 text-center">There are no availabilities</div>
+                    <div class="col-10 col-lg-8 text-center">There are no availabilities</div>
                 </ng-template>
+            </div>
+            <div class="row justify-content-center my-5">
+                <div class="col-11 col-lg-9">
+                    <div class="row justify-content-between">
+                        <div class="col-6 col-lg-6 text-start">
+                            <a class="btn btn-secondary px-5" [routerLink]="['/']">
+                                Go back
+                            </a>
+                        </div>
+                        <div class="col-6 col-lg-6 text-end">
+                            <a class="btn btn-info px-5 text-white" [routerLink]="['/appointments']">
+                                Procceed
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>

@@ -76,7 +76,91 @@
     },
     {
       "id": 1,
-      "day": "Monday",
+      "day": "Tuesday",
+      "entityId": "GYN500",
+      "availabilities": [
+        {
+          "time": "09:30"
+        },
+        {
+          "time": "09:45"
+        },
+        {
+          "time": "10:00"
+        },
+        {
+          "time": "10:15"
+        },
+        {
+          "time": "10:30"
+        },
+        {
+          "time": "10:45"
+        },
+        {
+          "time": "11:00"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "day": "Thursday",
+      "entityId": "GYN500",
+      "availabilities": [
+        {
+          "time": "09:30"
+        },
+        {
+          "time": "09:45"
+        },
+        {
+          "time": "10:00"
+        },
+        {
+          "time": "10:15"
+        },
+        {
+          "time": "10:30"
+        },
+        {
+          "time": "10:45"
+        },
+        {
+          "time": "11:00"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "day": "Friday",
+      "entityId": "GYN500",
+      "availabilities": [
+        {
+          "time": "09:30"
+        },
+        {
+          "time": "09:45"
+        },
+        {
+          "time": "10:00"
+        },
+        {
+          "time": "10:15"
+        },
+        {
+          "time": "10:30"
+        },
+        {
+          "time": "10:45"
+        },
+        {
+          "time": "11:00"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "day": "Wednesday",
       "entityId": "OP123",
       "availabilities": [
         {
@@ -97,7 +181,70 @@
       ]
     },
     {
-      "id": 2,
+      "id": 5,
+      "day": "Thursday",
+      "entityId": "OP123",
+      "availabilities": [
+        {
+          "time": "14:00"
+        },
+        {
+          "time": "14:30"
+        },
+        {
+          "time": "15:00"
+        },
+        {
+          "time": "15:30"
+        },
+        {
+          "time": "16:00"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "day": "Friday",
+      "entityId": "OP123",
+      "availabilities": [
+        {
+          "time": "14:00"
+        },
+        {
+          "time": "14:30"
+        },
+        {
+          "time": "15:00"
+        },
+        {
+          "time": "15:30"
+        },
+        {
+          "time": "16:00"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "day": "Monday",
+      "entityId": "GP3210",
+      "availabilities": [
+        {
+          "time": "10:30"
+        },
+        {
+          "time": "11:00"
+        },
+        {
+          "time": "11:30"
+        },
+        {
+          "time": "12:30"
+        }
+      ]
+    },
+    {
+      "id": 8,
       "day": "Tuesday",
       "entityId": "GP3210",
       "availabilities": [
@@ -116,9 +263,66 @@
       ]
     },
     {
-      "id": 3,
+      "id": 9,
       "day": "Wednesday",
-      "entityId": "E001",
+      "entityId": "GP3210",
+      "availabilities": [
+        {
+          "time": "10:30"
+        },
+        {
+          "time": "11:00"
+        },
+        {
+          "time": "11:30"
+        },
+        {
+          "time": "12:00"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "day": "Thursday",
+      "entityId": "GP3210",
+      "availabilities": [
+        {
+          "time": "10:30"
+        },
+        {
+          "time": "11:00"
+        },
+        {
+          "time": "11:30"
+        },
+        {
+          "time": "12:00"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "day": "Friday",
+      "entityId": "GP3210",
+      "availabilities": [
+        {
+          "time": "10:30"
+        },
+        {
+          "time": "11:00"
+        },
+        {
+          "time": "11:30"
+        },
+        {
+          "time": "12:00"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "day": "Monday",
+      "entityId": "P0011",
       "availabilities": [
         {
           "time": "11:30"
@@ -135,21 +339,40 @@
       ]
     },
     {
-      "id": 4,
-      "day": "Thursday",
-      "entityId": "GP3210",
+      "id": 13,
+      "day": "Wednesday",
+      "entityId": "P0011",
       "availabilities": [
-        {
-          "time": "10:30"
-        },
-        {
-          "time": "11:00"
-        },
         {
           "time": "11:30"
         },
         {
-          "time": "12:00"
+          "time": "11:35"
+        },
+        {
+          "time": "11:40"
+        },
+        {
+          "time": "11:45"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "day": "Friday",
+      "entityId": "P0011",
+      "availabilities": [
+        {
+          "time": "11:30"
+        },
+        {
+          "time": "11:35"
+        },
+        {
+          "time": "11:40"
+        },
+        {
+          "time": "11:45"
         }
       ]
     }

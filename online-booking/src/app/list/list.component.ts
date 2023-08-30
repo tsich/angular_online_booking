@@ -11,7 +11,8 @@ export class ListComponent implements OnInit {
   specialities: any[] = [];
   maxAvailLength!: number;
   selectedValue = '';
-  selectedSpeciality = 'test';
+  selectedSpeciality = '';
+  selectedSpecialityID = '';
 
   constructor(
     private _sharedService: SharedService,
@@ -25,7 +26,7 @@ export class ListComponent implements OnInit {
     });
 
     // Get shared values from service to component's variables
-    this._sharedService.sharedParam.subscribe((data) => {
+    this._sharedService.sharedParamSlots.subscribe((data) => {
       if (data) {
         // if data exist (!null !false !empty)
         this.slots = data;
@@ -51,10 +52,31 @@ export class ListComponent implements OnInit {
   ngOnInit() {}
 
   // In this function fire onSelected & onCheck functions from app-component
-  onSelectDateTime(day: string, time: string, speciality: string) {
+  onSelectDateTime(
+    day: string,
+    time: string,
+    speciality: string,
+    specialityID: string
+  ) {
     // var dateTime = day + ' ' + time;
     // console.log(dateTime);
-    this._sharedService.emitSetDateTime({ day, time, speciality });
+    this._sharedService.emitSetDateTime({ day, time, speciality, specialityID });
+
+    //We go as deep in an this.slots and filter elements at any level (now filtering availabilities)
+    const filtered = this.slots.map((element) => {
+      if (element.entityId == specialityID && element.day == day)
+        return {
+          ...element,
+          availabilities: element.availabilities.filter(
+            (e: any) => e.time !== time
+          ),
+        };
+      else return { ...element };
+    });
+
+    this._sharedService.slotsParam(filtered);
+
+    // console.log(filtered);
   }
 
   onSelectSpeciality(e: any) {
@@ -62,6 +84,7 @@ export class ListComponent implements OnInit {
     this.selectedValue = e.target.value;
     this.selectedSpeciality =
       e.target.options[e.target.selectedIndex].innerHTML;
+    this.selectedSpecialityID = e.target.value;
     this.authenticationService.getSlots(e.target.value);
   }
 }

@@ -16,12 +16,11 @@ export class AppComponent implements OnInit {
   dataUser: any = this.data != null ? JSON.parse(this.data) : [];
   user: string =
     Object.keys(this.dataUser).length > 0 ? this.dataUser.username : '';
-  slots: any;
+  slots: any[] = [];
   specialities: any;
   selectedSlots: any[] = [];
   title = 'doconapp';
-  loggedIn: boolean =
-    localStorage.getItem('token') != null;
+  loggedIn: boolean = localStorage.getItem('token') != null;
   authFailed: boolean | undefined;
 
   selectedDateTime: any;
@@ -38,8 +37,13 @@ export class AppComponent implements OnInit {
       // If user is logged in and specialities are fetched from json db
       if (loggedIn && this.authenticationService.getSpecialities()) {
         // Set the specialities from shared service
-        _sharedService.sharedParam.subscribe((data) => {
-          this.specialities = data;
+        _sharedService.sharedParamSlots.subscribe((data) => {
+          if (data) {
+            // if data exist (!null !false !empty)
+            this.slots = data;
+            console.log('this.slots app component');
+            console.log(this.slots);
+          }
         });
 
         this.data = localStorage.getItem('data');
@@ -85,6 +89,29 @@ export class AppComponent implements OnInit {
     this._sharedService.setSelectedSlots(this.selectedSlots);
     // console.log(this.selectedSlots);
     // console.log(this.selectedSlots.findIndex((e) => e.day == el.day));
+
+    //We go as deep in an this.slots and filter elements at any level (now filtering availabilities)
+    this.slots.map((element) => {
+      console.log(element.availabilities);
+      return element.entityId == el.specialityID && element.day == el.day
+        ? {
+            ...element,
+            availabilities:
+              element.availabilities.filter((e: any) => e.time == el.time)
+                .length > 0
+                ? {}
+                : element.availabilities.push({ time: el.time }),
+          }
+        : { ...element };
+    });
+
+    //  Sort this.slots based on element.availabilities.time hh:mm ASC order
+    this.slots.map((element) =>
+      element.availabilities.sort((a: any, b: any) => {
+        return a.time?.localeCompare(b.time);
+      })
+    );
+    this._sharedService.slotsParam(this.slots);
   }
 
   ngOnInit(): void {}

@@ -41,6 +41,7 @@ import {
 import { RegisterComponent } from './register/register.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
+import { SuccessBookingComponent } from './success-booking/success-booking.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MyAppointmentsComponent } from './my-appointments/my-appointments.compo
     RegisterComponent,
     HomepageComponent,
     MyAppointmentsComponent,
+    SuccessBookingComponent,
   ],
   imports: [
     BrowserModule,

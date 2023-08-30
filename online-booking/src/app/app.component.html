@@ -20,7 +20,8 @@
                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                         Selected Dates
                     </a>
-                    <ul class="dropdown-menu datetimeSelection" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu datetimeSelection" aria-labelledby="navbarDropdown"
+                        style="width: max-content;">
                         <ng-container *ngIf="selectedSlots.length>0; else defaultLi;">
                             <ng-container *ngFor="let sel of selectedSlots; last as l">
                                 <li>
@@ -41,7 +42,7 @@
                             </ng-container>
                         </ng-container>
                         <ng-template #defaultLi>
-                            <li class="ms-2">
+                            <li class="mx-2">
                                 <span>
                                     <small>You have not selected any dates!</small>
                                 </span>
